@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
-BRANCH="A16"
-RAW_URL="https://raw.githubusercontent.com/nuruszama/build_scripts/${BRANCH}"
+BRANCH="16"
+VERS="bka"
+RAW_URL="https://raw.githubusercontent.com/nuruszama/build_scripts/A${BRANCH}"
 clear
 
 # Array of target variants: "FS_TYPE GAPPS_BUILD"
@@ -14,7 +15,7 @@ VARIANTS=(
 export SF_USER="nuruszama"
 export SF_PROJECT="xiaomicreek"
 export ROM_NAME="EvolutionX"
-export ROM_VERSION=${EVO_VERSION_BASE}
+export ROM_VERSION="11.11"
 export ANDROID_VER="${BRANCH}"
 export RELEASE_TYPE="stable"
 export BUILD_TYPE="userdebug"
@@ -54,7 +55,7 @@ rm -rf device/xiaomi/creek
 rm -rf device/xiaomi/creek-kernel
 
 # Re-initialize the source
-repo init -u https://github.com/Evolution-X/manifest -b bka --git-lfs --depth=1
+repo init -u https://github.com/Evolution-X/manifest -b ${VERS} --git-lfs --depth=1
 
 # Clone local manifest
 git clone https://github.com/XiaomiCreek/android.git -b lineage-23.2 --depth=1 .repo/local_manifests
@@ -109,7 +110,7 @@ for VARIANT in "${VARIANTS[@]}"; do
     UPDATER_FILE="packages/apps/Updater/app/src/main/res/values/strings.xml"
     if [ -f "$UPDATER_FILE" ]; then
         echo "==> Patching Updater URL for ${FS_TYPE}-${GAPPS_CHOICE}..."
-        TARGET_URL="raw.githubusercontent.com/XiaomiCreek/OTA/bka/builds/{device}-${FS_TYPE}-${GAPPS_CHOICE}.json"
+        TARGET_URL="raw.githubusercontent.com/XiaomiCreek/OTA/${VERS}/builds/{device}-${FS_TYPE}-${GAPPS_CHOICE}.json"
         sed -i "s|raw.githubusercontent.com/OTA/bka/builds/{device}.json/|${TARGET_URL}|g" "$UPDATER_FILE"
     fi
     
@@ -138,7 +139,7 @@ for VARIANT in "${VARIANTS[@]}"; do
 
     # Upload
     echo "uploading file..."
-    ROM_DIR="out/target/product/creek/"
+    ROM_DIR="out/target/product/${DEVICE}/"
     ZIP_FILE=$(ls "$ROM_DIR" | grep "${ROM_NAME}-.*.zip$" | tail -n 1)
     export BUILD_DATE=$(echo "$ZIP_FILE" | grep -oP '\b20\d{6}\b')
     if [ -n "${ZIP_FILE}" ]; then
