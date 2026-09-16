@@ -13,15 +13,15 @@ VARIANTS=(
     "erofs vanilla"
     "erofs gapps"
     "ext4 vanilla"
-    "ext4 gapps"
 )
 
 # Export constant variables for all runs
 export SF_USER="nuruszama"
 export SF_PROJECT="xiaomicreek"
-export ANDROID_VER="16"
 export ROM_NAME="LineageOS"
 export ROM_VERSION="23.2"
+export ANDROID_VER="16"
+export ROM_TYPE="stable"
 export BUILD_TYPE="userdebug"
 export DEVICE_CODENAME="creek"
 export SCREENSHOTS="https://t.me/creekglobal"
