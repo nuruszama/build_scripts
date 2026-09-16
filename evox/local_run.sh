@@ -16,7 +16,6 @@ export ROM_NAME="EvolutionX"
 export ROM_VERSION="11.11"
 export ANDROID_VER="16"
 export BUILD_TYPE="userdebug"
-export ROM_TYPE="stable"
 export DEVICE="creek"
 export SSH_KEY="$HOME/.ssh/id_ed25519"
 export SCREENSHOTS="https://t.me/creekglobal/3776"
@@ -39,6 +38,9 @@ cleanup_updater() {
     echo "==> Restoring original Updater strings.xml..."
     if [ -d "packages/apps/Updater" ]; then
         git -C packages/apps/Updater checkout app/src/main/res/values/strings.xml 2>/dev/null || true
+    fi
+    if [ -d "vendor/lineage" ]; then
+        git -C vendor/lineage checkout config/version.mk 2>/dev/null || true
     fi
 }
 trap cleanup_updater EXIT
@@ -81,6 +83,19 @@ for VARIANT in "${VARIANTS[@]}"; do
         export WITH_GMS=true
     else
         export WITH_GMS=false
+    fi
+    
+    # Reset version.mk before applying changes for this iteration
+    if [ -d "vendor/lineage" ]; then
+        git -C vendor/lineage checkout config/version.mk 2>/dev/null || true
+    fi
+
+    # Patch EVO_BUILD_TYPE in version.mk
+    VERSION_MK="vendor/lineage/config/version.mk"
+    if [ -f "$VERSION_MK" ]; then
+        echo "==> Patching EVO_BUILD_TYPE to stable..."
+        sed -i 's/EVO_BUILD_TYPE ?= Unofficial/EVO_BUILD_TYPE := stable/' "$VERSION_MK"
+        sed -i 's/\$(error EVO_BUILD_TYPE must be Official or Unofficial./# \$(error EVO_BUILD_TYPE must be Official or Unofficial./' "$VERSION_MK"
     fi
     
     # Reset strings.xml so sed can find the original string every loop
