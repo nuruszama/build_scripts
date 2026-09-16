@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-BRANCH="android-16"
+BRANCH="A16"
 RAW_URL="https://raw.githubusercontent.com/nuruszama/build_scripts/${BRANCH}"
 clear
 
