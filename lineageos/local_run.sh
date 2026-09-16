@@ -27,7 +27,7 @@ export DEVICE_CODENAME="creek"
 export SCREENSHOTS="https://t.me/creekglobal"
 export DISCUSSION="https://t.me/creekglobal"
 export SSH_KEY="$HOME/.ssh/id_ed25519"
-export BANNER="https://raw.githubusercontent.com/nuruszama/crave/creek/lineageos/LineageOS_Banner.jpg"
+export BANNER="https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/lineageos/LineageOS_Banner.jpg"
 
 # Build Optimizations & Checks
 export SKIP_ABI_CHECKS=true
@@ -130,12 +130,12 @@ for VARIANT in "${VARIANTS[@]}"; do
     ZIP_FILE=$(ls "$ROM_DIR" 2>/dev/null | grep -E "^lineage-.*creek\.zip$" | tail -n 1)
     export BUILD_DATE=$(echo "$ZIP_FILE" | grep -oP '\b20\d{6}\b')
     if [ -n "${ZIP_FILE}" ]; then
-        curl -sfLo upload.sh https://raw.githubusercontent.com/nuruszama/crave/creek/tools/sf-upload.sh
+        curl -sfLo upload.sh https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/tools/sf-upload.sh
         chmod +x upload.sh ; ./upload.sh "${ROM_DIR}/${ZIP_FILE}"
         echo "Upload done for ${FS_TYPE}-${GAPPS_CHOICE}!"
         export ROM_URL="https://sourceforge.net/projects/${SF_PROJECT}/files/${ANDROID_VER}/${ROM_NAME}/${ZIP_FILE}/download"
         export REC_URL="https://sourceforge.net/projects/${SF_PROJECT}/files/${ANDROID_VER}/${ROM_NAME}/recovery.img/download"
-        curl -sfLo post_release.sh -z post_release.sh https://raw.githubusercontent.com/nuruszama/crave/creek/tools/telegram/post_release.sh
+        curl -sfLo post_release.sh -z post_release.sh https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/tools/telegram/post_release.sh
         chmod +x post_release.sh ; ./post_release.sh ${ROM_URL} ${REC_URL}
         echo "release updated to telegram"
         
