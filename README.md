@@ -185,7 +185,7 @@ Paste the following: (described based on this repo)
 
 cd <device>
 
-curl -sf https://raw.githubusercontent.com/nuruszama/crave/creek/build_queue.sh | bash
+curl -sf https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/lineageos/crave_queue.sh | bash
 ```
 
 ### Note
