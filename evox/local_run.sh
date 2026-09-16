@@ -12,10 +12,11 @@ VARIANTS=(
 # Export environment variables for the upload script
 export SF_USER="nuruszama"
 export SF_PROJECT="xiaomicreek"
-export ANDROID_VER="16"
 export ROM_NAME="EvolutionX"
 export ROM_VERSION="11.11"
+export ANDROID_VER="16"
 export BUILD_TYPE="userdebug"
+export ROM_TYPE="stable"
 export DEVICE="creek"
 export SSH_KEY="$HOME/.ssh/id_ed25519"
 export SCREENSHOTS="https://t.me/creekglobal/3776"
