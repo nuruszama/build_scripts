@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-
+BRANCH="android-16"
+RAW_URL="https://raw.githubusercontent.com/nuruszama/build_scripts/${BRANCH}"
 clear
 
 # Array of target variants: "FS_TYPE GAPPS_BUILD"
@@ -14,14 +15,14 @@ export SF_USER="nuruszama"
 export SF_PROJECT="xiaomicreek"
 export ROM_NAME="EvolutionX"
 export ROM_VERSION="11.11"
-export ANDROID_VER="16"
+export ANDROID_VER="${BRANCH}"
 export BUILD_CONFIG="stable"
 export BUILD_TYPE="userdebug"
 export DEVICE="creek"
 export SSH_KEY="$HOME/.ssh/id_ed25519"
 export SCREENSHOTS="https://t.me/creekglobal/3776"
 export DISCUSSION="https://t.me/creekglobal"
-export BANNER="https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/evox/EvolutionX_Banner.png"
+export BANNER="${RAW_URL}/evox/EvolutionX_Banner.png"
 
 # Build Optimizations & Checks
 export SKIP_ABI_CHECKS=true
@@ -141,14 +142,14 @@ for VARIANT in "${VARIANTS[@]}"; do
     ZIP_FILE=$(ls "$ROM_DIR" | grep "${ROM_NAME}-.*.zip$" | tail -n 1)
     export BUILD_DATE=$(echo "$ZIP_FILE" | grep -oP '\b20\d{6}\b')
     if [ -n "${ZIP_FILE}" ]; then
-        curl -sfLo ota_json.sh -z ota_json.sh https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/tools/telegram/send_doc.sh
+        curl -sfLo ota_json.sh -z ota_json.sh ${RAW_URL}/tools/telegram/send_doc.sh
         chmod +x ota_json.sh ; ./ota_json.sh "${ROM_DIR}${DEVICE}.json"
-        curl -sfLo upload.sh -z upload.sh https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/tools/sf-upload.sh
+        curl -sfLo upload.sh -z upload.sh ${RAW_URL}/tools/sf-upload.sh
         chmod +x upload.sh ; ./upload.sh "${ROM_DIR}${ZIP_FILE}"
         echo "upload done!"
         export ROM_URL="https://sourceforge.net/projects/${SF_PROJECT}/files/${ANDROID_VER}/${ROM_NAME}/${ZIP_FILE}/download"
         export REC_URL="https://sourceforge.net/projects/${SF_PROJECT}/files/${ANDROID_VER}/${ROM_NAME}/recovery.img/download"
-        curl -sfLo post_release.sh -z post_release.sh https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/tools/telegram/post_release.sh
+        curl -sfLo post_release.sh -z post_release.sh ${RAW_URL}/tools/telegram/post_release.sh
         chmod +x post_release.sh ; ./post_release.sh
         echo "release updated to telegram"
     else
