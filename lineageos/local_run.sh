@@ -6,6 +6,8 @@
 # ==============================================================================
 
 set -e # Exit immediately if a command or build step fails
+BRANCH="A16"
+RAW_URL="https://raw.githubusercontent.com/nuruszama/build_scripts/${BRANCH}"
 clear
 
 # Array of target variants: "FS_TYPE GAPPS_BUILD"
@@ -21,13 +23,13 @@ export SF_PROJECT="xiaomicreek"
 export ROM_NAME="LineageOS"
 export ROM_VERSION="23.2"
 export ANDROID_VER="16"
-export ROM_TYPE="stable"
+export RELEASE_TYPE="stable"
 export BUILD_TYPE="userdebug"
-export DEVICE_CODENAME="creek"
+export DEVICE="creek"
 export SCREENSHOTS="https://t.me/creekglobal"
 export DISCUSSION="https://t.me/creekglobal"
 export SSH_KEY="$HOME/.ssh/id_ed25519"
-export BANNER="https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/lineageos/LineageOS_Banner.jpg"
+export BANNER="${RAW_URL}/android-16/lineageos/LineageOS_Banner.jpg"
 
 # Build Optimizations & Checks
 export SKIP_ABI_CHECKS=true
@@ -65,7 +67,7 @@ git clone https://github.com/XiaomiCreek/android.git -b lineage-23.2 --depth=1 .
 repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 
 # Extract vendor tree
-curl -sfLo vendorextract.sh https://raw.githubusercontent.com/nuruszama/crave/creek/tools/vendorextract.sh
+curl -sfLo vendorextract.sh ${RAW_URL}/tools/vendorextract.sh
 chmod +x vendorextract.sh
 ./vendorextract.sh
 
@@ -126,16 +128,16 @@ for VARIANT in "${VARIANTS[@]}"; do
 
     # Upload
     echo "uploading file..."
-    ROM_DIR="out/target/product/creek/"
-    ZIP_FILE=$(ls "$ROM_DIR" 2>/dev/null | grep -E "^lineage-.*creek\.zip$" | tail -n 1)
+    ROM_DIR="out/target/product/${DEVICE}/"
+    ZIP_FILE=$(ls "$ROM_DIR" 2>/dev/null | grep -E "^lineage-.*${DEVICE}\.zip$" | tail -n 1)
     export BUILD_DATE=$(echo "$ZIP_FILE" | grep -oP '\b20\d{6}\b')
     if [ -n "${ZIP_FILE}" ]; then
-        curl -sfLo upload.sh https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/tools/sf-upload.sh
+        curl -sfLo upload.sh ${RAW_URL}/tools/sf-upload.sh
         chmod +x upload.sh ; ./upload.sh "${ROM_DIR}/${ZIP_FILE}"
         echo "Upload done for ${FS_TYPE}-${GAPPS_CHOICE}!"
         export ROM_URL="https://sourceforge.net/projects/${SF_PROJECT}/files/${ANDROID_VER}/${ROM_NAME}/${ZIP_FILE}/download"
         export REC_URL="https://sourceforge.net/projects/${SF_PROJECT}/files/${ANDROID_VER}/${ROM_NAME}/recovery.img/download"
-        curl -sfLo post_release.sh -z post_release.sh https://raw.githubusercontent.com/nuruszama/build_scripts/android-16/tools/telegram/post_release.sh
+        curl -sfLo post_release.sh -z post_release.sh ${RAW_URL}/tools/telegram/post_release.sh
         chmod +x post_release.sh ; ./post_release.sh ${ROM_URL} ${REC_URL}
         echo "release updated to telegram"
         
