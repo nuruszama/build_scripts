@@ -33,12 +33,12 @@ DISCUSSION="${DISCUSSION:-https://t.me/creekglobal}"
 BUILD_CONFIG="${BUILD_CONFIG:-erofs-gapps}"
 BUILD_DATE="${BUILD_DATE:-$(shell date -u +%Y%m%d)}"
 
-HEADER="#${ROM_NAME} #${RELEASE_TYPE} #${DEVICE} #A${ANDROID_VER}
+HEADER="#${ROM_NAME} #${RELEASE_TYPE} #${DEVICE} #${ANDROID_VER}
 
 <b>${ROM_NAME}-${ROM_VERSION} for ${DEVICE_CODENAME}</b>"
 TAGS="• <b>Android version:</b> ${ANDROID_VER}
 • <b>Build type     :</b> ${BUILD_TYPE}
-• <b>Build config :</b> ${BUILD_CONFIG}
+• <b>Build config  :</b> ${BUILD_CONFIG}
 • <b>Build date     :</b> ${BUILD_DATE}"
 
 FLASHING_STEPS="• flash the rom with any recovery
@@ -50,10 +50,9 @@ FLASHING_STEPS="• flash the rom with any recovery
 CREDITS="@Yozemitas - for the server.
 @Lufrz - for fixing major bugs.
 @nuruszama - for the dt initiative and maintaining.
-@Koneko_dev - for introducing other roms with
-             existing device tree base.
+@Koneko_dev - for introducing other roms with existing DT base.
 
-We also thak valuable supports by:
+We also thank valuable supports by:
 @Sarojtaj77 @therealmharc @Liieko
 @vivekachooz @dr_rootsu"
 
