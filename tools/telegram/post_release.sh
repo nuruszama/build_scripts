@@ -47,8 +47,15 @@ FLASHING_STEPS="• flash the rom with any recovery
 • do a format
 • reboot to system"
 
-CREDITS="@Sarojtaj77 @therealmharc @nuruszama
-@Yozemitas @Lufrz @vivekachooz @Liieko"
+CREDITS="@Yozemitas - for the server.
+@Lufrz - for fixing major bugs.
+@nuruszama - for the dt initiative and maintaining.
+@Koneko_dev - for introducing other roms with
+             existing device tree base.
+
+We also thak valuable supports by:
+@Sarojtaj77 @therealmharc @Liieko
+@vivekachooz @dr_rootsu"
 
 FOOTER="<a href=\"${ROM_URL}\">Download</a> | <a href=\"${DISCUSSION}\">Discussion</a> | <a href=\"${REC_URL}\">Recovery</a> | <a href=\"${SCREENSHOTS}\">Screenshots</a>"
 
