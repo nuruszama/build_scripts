@@ -49,7 +49,7 @@ FLASHING_STEPS="• flash the rom with any recovery
 
 CREDITS="@Yozemitas - for the server.
 @Lufrz - for fixing major bugs.
-@nuruszama - for the dt initiative and maintaining.
+@nuruszama - for the Device Tree initiative and maintaining.
 @Koneko_dev - for introducing other roms with existing DT base.
 
 We also thank valuable supports by:
