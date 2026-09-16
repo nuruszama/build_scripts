@@ -35,7 +35,7 @@ BUILD_DATE="${BUILD_DATE:-$(shell date -u +%Y%m%d)}"
 
 HEADER="#${ROM_NAME} #${RELEASE_TYPE} #${DEVICE} #${ANDROID_VER}
 
-<b>${ROM_NAME}-${ROM_VERSION} for ${DEVICE_CODENAME}</b>"
+<b>${ROM_NAME}-${ROM_VERSION} for ${DEVICE}</b>"
 TAGS="• <b>Android version:</b> ${ANDROID_VER}
 • <b>Build type     :</b> ${BUILD_TYPE}
 • <b>Build config  :</b> ${BUILD_CONFIG}
