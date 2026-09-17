@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
-BRANCH="16"
-VERS="bka"
+BRANCH="17"
+VERS="cnb"
 RAW_URL="https://raw.githubusercontent.com/nuruszama/build_scripts/A${BRANCH}"
 clear
 
@@ -15,7 +15,7 @@ VARIANTS=(
 export SF_USER="nuruszama"
 export SF_PROJECT="xiaomicreek"
 export ROM_NAME="EvolutionX"
-export ROM_VERSION="11.11"
+export ROM_VERSION="12.2"
 export ANDROID_VER="${BRANCH}"
 export RELEASE_TYPE="stable"
 export BUILD_TYPE="userdebug"
