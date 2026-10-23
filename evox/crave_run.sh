@@ -155,8 +155,8 @@ telegram_edit "${DEVICE} Build started"
 START_TIME=$(date +%s)
 
 echo "==> Resetting environment..."
-git -C . checkout . 2>/dev/null || true
-git -C . clean -fd 2>/dev/null || true
+git checkout . 2>/dev/null || true
+git clean -fd 2>/dev/null || true
 
 # Export environment variables for the upload script
 export SF_USER="nuruszama"
@@ -168,8 +168,8 @@ export ANDROID_VER="${BRANCH}"
 export RELEASE_TYPE="stable"
 export BUILD_TYPE="userdebug"
 export DEVICE="creek"
-export FS_TYPE = "erofs"
-export GAPPS_CHOICE = "gapps"
+export FS_TYPE="erofs"
+export GAPPS_CHOICE="gapps"
 export BANNER="${RAW_URL}/evox/EvolutionX_Banner.png"
 
 # Build Optimizations & Checks
