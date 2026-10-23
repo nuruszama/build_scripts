@@ -155,8 +155,8 @@ telegram_edit "${DEVICE} Build started"
 START_TIME=$(date +%s)
 
 echo "==> Resetting environment..."
-git -C checkout . 2>/dev/null || true
-git -C clean -fd 2>/dev/null || true
+git -C . checkout . 2>/dev/null || true
+git -C . clean -fd 2>/dev/null || true
 
 # Export environment variables for the upload script
 export SF_USER="nuruszama"
