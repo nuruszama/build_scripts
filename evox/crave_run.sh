@@ -160,10 +160,10 @@ git clean -fd 2>/dev/null || true
 
 # Export environment variables for the upload script
 export SF_USER="nuruszama"
-export VERS="bka"
+export VERS="cnb"
 export SF_PROJECT="xiaomicreek"
 export ROM_NAME="EvolutionX"
-export ROM_VERSION="11.12"
+export ROM_VERSION="12.3"
 export ANDROID_VER="${BRANCH}"
 export RELEASE_TYPE="stable"
 export BUILD_TYPE="user"
