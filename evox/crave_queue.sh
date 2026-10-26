@@ -4,7 +4,7 @@
 cd "$(dirname "$0")"
 clear
 
-BRANCH="16"
+BRANCH="17"
 RAW_URL="https://raw.githubusercontent.com/nuruszama/build_scripts/A${BRANCH}"
 
 # Check if .env file exists
