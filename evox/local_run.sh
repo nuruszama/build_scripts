@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
-BRANCH="16"
-VERS="bka"
+BRANCH="17"
+VERS="cnb"
 RAW_URL="https://raw.githubusercontent.com/nuruszama/build_scripts/A${BRANCH}"
 clear
 
