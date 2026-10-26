@@ -13,7 +13,7 @@ if [ ! -f ".env" ]; then
     echo "⚠️ .env file not found!"
     # define 
     DEVICE="creek"
-    BUILD_TYPE="userdebug"
+    BUILD_TYPE="user"
 fi
 
 # Load your local secrets
@@ -166,7 +166,7 @@ export ROM_NAME="EvolutionX"
 export ROM_VERSION="11.12"
 export ANDROID_VER="${BRANCH}"
 export RELEASE_TYPE="stable"
-export BUILD_TYPE="userdebug"
+export BUILD_TYPE="user"
 export DEVICE="creek"
 export FS_TYPE="erofs"
 export GAPPS_CHOICE="gapps"
