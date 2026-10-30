@@ -1,11 +1,12 @@
 #!/bin/bash
 
 cd "$(dirname "$0")" 2>/dev/null || true
-clear
 
 # Fallbacks if run independently
 BRANCH="${BRANCH:-16}"
-ROM_TYPE="${ROM_TYPE:-evox}"
+ROM_NAME="${ROM_NAME:-EvolutionX}"
+ROM_SCRIPT="${ROM_SCRIPT:-evox}"
+DEVICE="${DEVICE:-creek}"
 RAW_URL="https://raw.githubusercontent.com/nuruszama/build_scripts/A${BRANCH}"
 
 # Check if .env file exists
@@ -16,16 +17,13 @@ fi
 
 source .env
 
-echo ">> Building $ROM_NAME for $DEVICE (Branch: A${BRANCH}, ROM: ${ROM_TYPE})"
+echo ">> Building $ROM_NAME for $DEVICE (Branch: A${BRANCH}, ROM: ${ROM_SCRIPT})"
 
 LOG_FILE="crave_build.log"
 rm -f "$LOG_FILE"
 
-ATTEMPT=${ATTEMPT:-1}
-echo ">> attempting build queue ~$((ATTEMPT))..."
-
 # Pass ROM_TYPE and other variables inline into the remote container execution
-crave run --projectID 93 --no-patch -- "BRANCH=${BRANCH} ROM_TYPE=${ROM_TYPE} ROM_NAME='${ROM_NAME}' DEVICE='${DEVICE}' curl -sf ${RAW_URL}/${ROM_TYPE}/crave_run.sh | bash" 2>&1 | tee "$LOG_FILE"
+crave run --projectID 93 --no-patch -- "curl -sf ${RAW_URL}/${ROM_SCRIPT}/crave_run.sh | bash" 2>&1 | tee "$LOG_FILE"
 
 CRAVE_STATUS=${PIPESTATUS[0]}
 
