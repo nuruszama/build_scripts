@@ -17,7 +17,7 @@ fi
 
 source .env
 
-echo ">> Building $ROM_NAME for $DEVICE (Branch: A${BRANCH}, ROM: ${ROM_SCRIPT})"
+echo ">> Building $ROM_NAME for $DEVICE (Branch: A${BRANCH})"
 
 LOG_FILE="crave_build.log"
 rm -f "$LOG_FILE"
