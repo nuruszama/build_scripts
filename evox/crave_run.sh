@@ -201,6 +201,8 @@ rm -rf .repo/local_manifests
 rm -rf vendor/xiaomi/creek
 rm -rf device/xiaomi/creek
 rm -rf device/xiaomi/creek-kernel
+rm -rf device/xiaomi/creek-miuicamera
+rm -rf device/xiaomi/camera
 
 # Initialize the ROM source repository
 print_step "repo init"
