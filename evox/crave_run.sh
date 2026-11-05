@@ -169,7 +169,8 @@ export RELEASE_TYPE="stable"
 export BUILD_TYPE="user"
 export DEVICE="creek"
 export FS_TYPE="erofs"
-export GAPPS_CHOICE="gapps"
+export GMS="false"
+export GAPPS_CHOICE="vanilla"
 export BANNER="${RAW_URL}/evox/EvolutionX_Banner.png"
 
 # Build Optimizations & Checks
